@@ -1,0 +1,2749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Your Project | Minigle Web Design & Hosting</title>
+    <link rel="stylesheet" href="/sty/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Root Variables for Colors */
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4cc9f0;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --text-color: #333;
+            --text-light: #666;
+            --success-color: #4ade80;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --gray-color: #6c757d;
+            --light-gray: #e9ecef;
+            --border-radius: 8px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        /* Video Header Section - FIXED */
+        .video-header {
+            position: relative;
+            height: 70vh;
+            min-height: 500px;
+            max-height: 700px;
+            overflow: hidden;
+        }
+
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(26, 26, 46, 0.7) 0%, 
+                rgba(67, 97, 238, 0.5) 50%,
+                rgba(26, 26, 46, 0.8) 100%);
+            z-index: 2;
+        }
+
+        .video-content {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+            display: flex;
+            gap: 15px;
+        }
+
+        .video-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .video-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            padding: 5px 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--dark-color);
+            z-index: 1001;
+        }
+
+        /* Project Process Steps */
+        .process-section {
+            padding: 80px 0 40px;
+        }
+
+        .section-heading {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .section-subheading {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .process-step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 30px 20px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin: 0 auto 25px;
+        }
+
+        .process-step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .process-step p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Project Inquiry Form */
+        .inquiry-section {
+            padding: 40px 0 80px;
+            background-color: #f8fafc;
+        }
+
+        .inquiry-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .inquiry-info {
+            padding: 30px;
+        }
+
+        .inquiry-info h2 {
+            font-size: 2.2rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+        }
+
+        .inquiry-info p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .benefits-list {
+            margin-top: 30px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .benefit-item i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-top: 5px;
+            margin-right: 15px;
+            min-width: 20px;
+        }
+
+        .inquiry-form-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .form-progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .form-progress::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--light-gray);
+            z-index: 1;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .progress-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: white;
+            border: 2px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+
+        .progress-step.active .progress-circle {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+        .progress-step.completed .progress-circle {
+            background-color: var(--success-color);
+            border-color: var(--success-color);
+            color: white;
+        }
+
+        .progress-step span {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .progress-step.active span {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .service-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .service-option {
+            border: 2px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .service-option:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(67, 97, 238, 0.05);
+        }
+
+        .service-option.selected {
+            border-color: var(--primary-color);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+
+        .service-option i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .budget-slider-container {
+            margin-top: 10px;
+        }
+
+        .budget-slider {
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .budget-value {
+            text-align: center;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .budget-range {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .btn-next, .btn-prev, .btn-submit {
+            min-width: 120px;
+        }
+
+        .btn-prev {
+            background-color: var(--light-gray);
+            color: var(--dark-color);
+        }
+
+        .btn-prev:hover {
+            background-color: #d1d5db;
+        }
+
+        .btn-submit {
+            background-color: var(--success-color);
+        }
+
+        .btn-submit:hover {
+            background-color: #22c55e;
+        }
+
+        /* Project Packages */
+        .packages-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .package-card {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            background-color: white;
+            position: relative;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .package-card.popular {
+            border: 2px solid var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .package-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .package-popular-badge {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .package-header {
+            padding: 30px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(76, 201, 240, 0.1) 100%);
+        }
+
+        .package-header h3 {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+
+        .package-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .package-price span {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: normal;
+        }
+
+        .package-desc {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .package-features {
+            padding: 30px;
+        }
+
+        .package-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .package-feature i {
+            color: var(--success-color);
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        .package-feature.disabled i {
+            color: var(--light-gray);
+        }
+
+        .package-feature.disabled {
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        .package-cta {
+            padding: 0 30px 30px;
+            text-align: center;
+        }
+
+        /* PAYMENT MODAL STYLES */
+        .payment-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .payment-modal-overlay.active {
+            display: flex;
+        }
+
+        .payment-modal {
+            background-color: white;
+            border-radius: var(--border-radius);
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+        }
+
+        .close-payment-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray-color);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .close-payment-modal:hover {
+            background-color: var(--light-gray);
+            color: var(--dark-color);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        /* Payment Steps */
+        .payment-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .payment-steps::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--light-gray);
+            z-index: 1;
+        }
+
+        .payment-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .payment-step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            border: 2px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--gray-color);
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+
+        .payment-step.active .payment-step-number {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+        .payment-step.completed .payment-step-number {
+            background-color: var(--success-color);
+            border-color: var(--success-color);
+            color: white;
+        }
+
+        .payment-step-label {
+            font-size: 0.9rem;
+            color: var(--gray-color);
+            font-weight: 500;
+        }
+
+        .payment-step.active .payment-step-label {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Payment Sections */
+        .payment-section {
+            display: none;
+        }
+
+        .payment-section.active {
+            display: block;
+        }
+
+        .payment-section-title {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        /* Package Summary */
+        .package-summary-box {
+            background-color: rgba(67, 97, 238, 0.05);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+
+        .summary-label {
+            color: var(--text-light);
+        }
+
+        .summary-value {
+            font-weight: 600;
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .payment-method {
+            border: 2px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .payment-method:hover {
+            border-color: var(--primary-color);
+        }
+
+        .payment-method.selected {
+            border-color: var(--primary-color);
+            background-color: rgba(67, 97, 238, 0.05);
+        }
+
+        .payment-method i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .payment-method span {
+            display: block;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        /* Card Details */
+        .card-details {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .card-logo {
+            text-align: right;
+            margin-bottom: 10px;
+        }
+
+        .card-logo img {
+            height: 30px;
+        }
+
+        /* Success Message */
+        .success-message {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .success-message h3 {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+
+        .success-message p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Modal Footer */
+        .modal-footer {
+            padding: 25px 30px;
+            border-top: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f9fafc;
+            border-bottom-left-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
+        }
+
+        .btn-prev-payment {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-prev-payment:hover {
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
+            background-color: #f8fafc;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            background-color: white;
+        }
+
+        .faq-question {
+            padding: 20px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background-color: rgba(67, 97, 238, 0.05);
+        }
+
+        .faq-question i {
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 30px 20px;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 70px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #b0b7c3;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #b0b7c3;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Confirmation Modal */
+        .confirmation-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .confirmation-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 50px;
+            border-radius: var(--border-radius);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-content i {
+            font-size: 4rem;
+            color: var(--success-color);
+            margin-bottom: 20px;
+        }
+
+        .modal-content h2 {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .video-header {
+                height: 60vh;
+                min-height: 400px;
+            }
+            
+            .page-title {
+                font-size: 2.8rem;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+            }
+            
+            .process-step {
+                min-width: 100%;
+            }
+            
+            .package-card.popular {
+                transform: scale(1);
+            }
+            
+            .package-card.popular:hover {
+                transform: translateY(-10px);
+            }
+            
+            .card-details {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .video-header {
+                height: 50vh;
+                min-height: 350px;
+            }
+            
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1rem;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 280px;
+                height: 100vh;
+                background-color: white;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 100px 30px 30px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+                z-index: 999;
+                overflow-y: auto;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 12px 15px;
+                border-radius: var(--border-radius);
+                font-size: 1.1rem;
+                transition: var(--transition);
+            }
+            
+            .nav-links a:hover {
+                background-color: rgba(67, 97, 238, 0.1);
+                color: var(--primary-color);
+                padding-left: 20px;
+            }
+            
+            .nav-links a::after {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .mobile-menu-btn.active {
+                position: fixed;
+                right: 20px;
+                top: 25px;
+            }
+            
+            .section-heading {
+                font-size: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .inquiry-form-container {
+                padding: 30px 20px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn-next, .btn-prev, .btn-submit {
+                width: 100%;
+            }
+            
+            .payment-modal {
+                width: 95%;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .modal-footer .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .video-header {
+                height: 40vh;
+                min-height: 300px;
+            }
+            
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                padding: 30px 20px;
+            }
+            
+            .payment-steps {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            
+            .payment-steps::before {
+                display: none;
+            }
+            
+            .payment-step {
+                flex-direction: row;
+                width: 100%;
+                align-items: center;
+            }
+            
+            .payment-step-number {
+                margin-right: 15px;
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-img"><img src="/upload/img/minigle-logo-fav-light.png" alt="main header" style="height: 40px;"></div>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/alfredweb/index.html">Home</a></li>
+                    <li><a href="./about-me.html">About</a></li>
+                    <li><a href="./services-info.html">Services</a></li>
+                    <li><a href="./works-info.html">Portfolio</a></li>
+                    <li><a href="./start-project.html" class="active">Start Project</a></li>
+                    <li><a href="/alfredweb/assets/contact-term.html">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay"></div>
+
+    <!-- Video Header -->
+    <section class="video-header">
+        <div class="video-container">
+            <video autoplay muted loop playsinline>
+                <source src="/upload/media/normal_gi-68d1c52c2ef9e.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+        <div class="video-content">
+            <h1 class="page-title">Start Your Project</h1>
+            <p class="page-subtitle">Let's bring your vision to life. Complete the form below to begin your web design and hosting journey with me.</p>
+        </div>
+        <div class="video-controls">
+            <button class="video-btn" id="playPauseBtn">
+                <i class="fas fa-pause"></i>
+            </button>
+            <button class="video-btn" id="muteBtn">
+                <i class="fas fa-volume-up"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Rest of your existing HTML remains the same until the payment modal -->
+
+    <!-- Project Process Steps -->
+    <section class="process-section">
+        <div class="container">
+            <h2 class="section-heading">How It Works</h2>
+            <p class="section-subheading">A simple 4-step process from initial consultation to project launch</p>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Project Inquiry</h3>
+                    <p>Fill out the project form with your requirements, timeline, and budget. This helps me understand your needs.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Consultation & Planning</h3>
+                    <p>I'll schedule a free consultation to discuss your project in detail and create a customized plan.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Design & Development</h3>
+                    <p>I'll create your website based on the approved plan, with regular updates and feedback opportunities.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Launch & Support</h3>
+                    <p>Your website goes live! I'll handle hosting setup and provide ongoing support to ensure everything runs smoothly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Inquiry Form -->
+    <section class="inquiry-section" id="inquiry-section">
+        <div class="container">
+            <div class="inquiry-container">
+                <div class="inquiry-info">
+                    <h2>Tell Me About Your Project</h2>
+                    <p>Providing detailed information about your project helps me create a tailored solution that meets your specific needs and goals. The more I know, the better I can serve you.</p>
+                    
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Personalized Consultation</h4>
+                                <p>Every project starts with a free consultation to ensure we're aligned on goals and expectations.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Transparent Pricing</h4>
+                                <p>No hidden fees. You'll receive a detailed quote based on your specific requirements.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Timely Communication</h4>
+                                <p>I respond to all inquiries within 24 hours and keep you updated throughout the project.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="inquiry-form-container">
+                    <div class="form-progress">
+                        <div class="progress-step active" data-step="1">
+                            <div class="progress-circle">1</div>
+                            <span>Details</span>
+                        </div>
+                        <div class="progress-step" data-step="2">
+                            <div class="progress-circle">2</div>
+                            <span>Services</span>
+                        </div>
+                        <div class="progress-step" data-step="3">
+                            <div class="progress-circle">3</div>
+                            <span>Timeline</span>
+                        </div>
+                    </div>
+                    
+                    <form id="projectInquiryForm">
+                        <!-- Step 1: Project Details -->
+                        <div class="form-step active" data-step="1">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">First Name *</label>
+                                    <input type="text" id="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name *</label>
+                                    <input type="text" id="lastName" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" id="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="company">Company/Organization</label>
+                                <input type="text" id="company">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="projectName">Project Name *</label>
+                                <input type="text" id="projectName" placeholder="e.g., New E-commerce Store" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="projectDescription">Project Description *</label>
+                                <textarea id="projectDescription" placeholder="Tell me about your project, goals, and any specific requirements..." required></textarea>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-next">Next: Services</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2: Services Selection -->
+                        <div class="form-step" data-step="2">
+                            <div class="form-group">
+                                <label>What services do you need? *</label>
+                                <div class="service-options">
+                                    <div class="service-option" data-service="web-design">
+                                        <i class="fas fa-laptop-code"></i>
+                                        <div>Web Design</div>
+                                    </div>
+                                    <div class="service-option" data-service="hosting">
+                                        <i class="fas fa-server"></i>
+                                        <div>Web Hosting</div>
+                                    </div>
+                                    <div class="service-option" data-service="ecommerce">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <div>E-commerce</div>
+                                    </div>
+                                    <div class="service-option" data-service="redesign">
+                                        <i class="fas fa-redo"></i>
+                                        <div>Website Redesign</div>
+                                    </div>
+                                    <div class="service-option" data-service="maintenance">
+                                        <i class="fas fa-tools"></i>
+                                        <div>Maintenance</div>
+                                    </div>
+                                    <div class="service-option" data-service="other">
+                                        <i class="fas fa-plus-circle"></i>
+                                        <div>Other</div>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="selectedServices" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="budget">Project Budget *</label>
+                                <div class="budget-slider-container">
+                                    <input type="range" id="budget" min="500" max="10000" step="500" value="3000" class="budget-slider">
+                                    <div class="budget-value">$<span id="budgetValue">3,000</span></div>
+                                    <div class="budget-range">
+                                        <span>$500</span>
+                                        <span>$10,000+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="referenceSites">Reference Websites (Optional)</label>
+                                <textarea id="referenceSites" placeholder="Please share links to websites you like for design/style reference..."></textarea>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-prev">Previous</button>
+                                <button type="button" class="btn btn-next">Next: Timeline</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 3: Timeline & Submission -->
+                        <div class="form-step" data-step="3">
+                            <div class="form-group">
+                                <label for="timeline">Desired Timeline *</label>
+                                <select id="timeline" required>
+                                    <option value="">Select timeline</option>
+                                    <option value="urgent">As soon as possible (1-2 weeks)</option>
+                                    <option value="normal">Normal (3-4 weeks)</option>
+                                    <option value="flexible">Flexible (1-2 months)</option>
+                                    <option value="planning">Just planning/exploring</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="startDate">Preferred Start Date</label>
+                                <input type="date" id="startDate">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="referral">How did you hear about me?</label>
+                                <select id="referral">
+                                    <option value="">Select option</option>
+                                    <option value="search">Search Engine (Google, etc.)</option>
+                                    <option value="social">Social Media</option>
+                                    <option value="referral">Friend/Colleague Referral</option>
+                                    <option value="portfolio">Saw my portfolio</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="additionalInfo">Additional Information</label>
+                                <textarea id="additionalInfo" placeholder="Any other details, questions, or concerns you'd like to share..."></textarea>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-prev">Previous</button>
+                                <button type="submit" class="btn btn-submit">Submit Project Inquiry</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Packages -->
+    <section class="packages-section">
+        <div class="container" id="start-project">
+            <h2 class="section-heading">Popular Project Packages</h2>
+            <p class="section-subheading">Pre-defined packages for common project types. Custom packages are also available.</p>
+            
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Starter Website</h3>
+                        <div class="package-price">$1,500<span>/one-time</span></div>
+                        <p class="package-desc">Perfect for small businesses or personal portfolios</p>
+                    </div>
+                    <div class="package-features">
+                        <div class="package-feature">
+                            <i class="fas fa-check"></i>
+                            <span>5-7 Page Website</span>
+                        </div>
+                        <div class="package-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Responsive Design</span>
+                        </div>
+                        <div class="package-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Contact Form</span>
+                        </div>
+                        <div class="package-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Basic SEO Setup</span>
+                        </div>
+                        <div class="package-feature disabled">
+                            <i class="fas fa-times"></i>
+                            <span>E-commerce Functionality</span>
+                        </div>
+                        <div class="package-feature disabled">
+                            <i class="fas fa-times"></i>
+                            <span>Advanced Animations</span>
+                        </div>
+                    </div>
+                    <div class="package-cta">
+                        <button class="btn btn-outline select-package" data-package="starter" data-price="1500">Select Package</button>
+                    </div>
+                </div>
+                
+                <div class="package-card popular">
+                    <div class="package-popular-badge">Most Popular</div>
+                    <div class="package-header">
+                        <h3>Business Pro</h3>
+                        <div class="package-price">$3,500<span>/one-time</span></div>
+                        <p class="package-desc">Comprehensive solution for growing businesses</p>
+                    </div>
+                    <div class="package-features">
+                        <div class="package-feature">
+                            <i class="fas fa-check"></i>
+                            <span>10-15 Page Website</span>
+                        </div>
+                        <div class="package-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Advanced Responsive Design</span>
+                        </div>
+                        <div class="package-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Custom Features</span>
+                        </div>
+                        <div class="package-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Full SEO Optimization</span>
+                        </div>
+                        <div class="package-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Basic E-commerce (up to 20 products)</span>
+                        </div>
+                        <div class="package-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Interactive Elements</span>
+                        </div>
+                    </div>
+                    <div class="package-cta">
+                        <button class="btn select-package" data-package="business" data-price="3500">Select Package</button>
+                    </div>
+                </div>
+                
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>E-commerce Elite</h3>
+                        <div class="package-price">$6,500<span>/one-time</span></div>
+                        <p class="package-desc">Full-featured online store with advanced functionality</p>
+                    </div>
+                    <div class="package-features">
+                        <div class="package-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Full E-commerce Platform</span>
+                        </div>
+                        <div class="package-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Unlimited Products</span>
+                        </div>
+                        <div class="package-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Payment Gateway Integration</span>
+                        </div>
+                        <div class="package-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Inventory Management</span>
+                        </div>
+                        <div class="package-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Advanced Security Features</span>
+                        </div>
+                        <div class="package-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Priority Support</span>
+                        </div>
+                    </div>
+                    <div class="package-cta">
+                        <button class="btn btn-outline select-package" data-package="ecommerce" data-price="6500">Select Package</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <p style="color: var(--text-light); max-width: 700px; margin: 0 auto 20px;">Don't see what you need? <strong>All projects are customizable</strong>. Fill out the form above for a personalized quote.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-heading">Frequently Asked Questions</h2>
+            <p class="section-subheading">Common questions about starting a project with me</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How long does a typical web design project take?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Project timelines vary based on complexity. A basic website typically takes 2-3 weeks, while more complex projects with custom features or e-commerce functionality may take 4-6 weeks. I'll provide a detailed timeline during our initial consultation.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you offer hosting services as part of your packages?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! I offer comprehensive hosting solutions with all my web design packages. This includes secure hosting, regular backups, SSL certificates, and technical support. You can also choose to host elsewhere if you prefer.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What's included in the project cost?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>My project costs include design, development, testing, basic SEO setup, responsive optimization, and one month of post-launch support. Hosting is billed separately on a monthly or annual basis. I provide a detailed breakdown in your project proposal.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Will I be able to update my website myself?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! I build all websites with user-friendly content management systems (like WordPress) that allow you to easily update text, images, and content. I also provide training and documentation to help you manage your site.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What's your payment process?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I typically require a 50% deposit to begin work, with the remaining 50% due upon project completion. For larger projects, we can arrange milestone-based payments. All payment details will be clearly outlined in our project agreement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+            <div class="logo2">
+                <div class="logo-img2"><img src="/upload/img/minigle-logo-fav-dark.png" alt=""></div>
+                
+            </div>
+                    <p>Professional web design and hosting services by Alfred Godwin. Creating beautiful, functional websites that help businesses succeed online.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="./assets/about-me.html">About</a></li>
+                        <li><a href="./assets/services-info.html">Services</a></li>
+                        <li><a href="./assets/works-info.html">Portfolio</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="start-project.html#">Web Design</a></li>
+                        <li><a href="start-project.html#">Web Hosting</a></li>
+                        <li><a href="start-project.html#">E-commerce</a></li>
+                        <li><a href="start-project.html#">Website Maintenance</a></li>
+                        <li><a href="start-project.html#">SEO Optimization</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> alfred@minigle.com</li>
+                        <li><i class="fas fa-phone"></i> +234 913-710-2840</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9am-6pm</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Remote Services Worldwide</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; <span id="currentYear"></span> Minigle. All rights reserved. Designed by Alfred Godwin.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PAYMENT MODAL -->
+    <div class="payment-modal-overlay" id="paymentModal">
+        <div class="payment-modal">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h2>Complete Your Purchase</h2>
+                <button class="close-payment-modal" id="closePaymentModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <!-- Payment Steps -->
+                <div class="payment-steps">
+                    <div class="payment-step active" id="paymentStep1">
+                        <div class="payment-step-number">1</div>
+                        <div class="payment-step-label">Package Details</div>
+                    </div>
+                    <div class="payment-step" id="paymentStep2">
+                        <div class="payment-step-number">2</div>
+                        <div class="payment-step-label">Your Information</div>
+                    </div>
+                    <div class="payment-step" id="paymentStep3">
+                        <div class="payment-step-number">3</div>
+                        <div class="payment-step-label">Payment</div>
+                    </div>
+                    <div class="payment-step" id="paymentStep4">
+                        <div class="payment-step-number">4</div>
+                        <div class="payment-step-label">Confirmation</div>
+                    </div>
+                </div>
+                
+                <!-- Step 1: Package Details -->
+                <div class="payment-section active" id="paymentSection1">
+                    <h3 class="payment-section-title">Package Summary</h3>
+                    
+                    <div class="package-summary-box">
+                        <div class="summary-row">
+                            <div class="summary-label">Selected Package:</div>
+                            <div class="summary-value" id="summaryPackage">Starter Website</div>
+                        </div>
+                        <div class="summary-row">
+                            <div class="summary-label">Package Price:</div>
+                            <div class="summary-value" id="summaryPrice">$1,500.00</div>
+                        </div>
+                        <div class="summary-row">
+                            <div class="summary-label">Setup Fee:</div>
+                            <div class="summary-value">$0.00</div>
+                        </div>
+                        <div class="summary-row">
+                            <div class="summary-label">Estimated Tax:</div>
+                            <div class="summary-value">$0.00</div>
+                        </div>
+                        <div class="summary-row">
+                            <div class="summary-label">Total Amount:</div>
+                            <div class="summary-value" id="summaryTotal">$1,500.00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="projectTimelinePayment">Preferred Timeline *</label>
+                        <select id="projectTimelinePayment" required>
+                            <option value="">Select timeline</option>
+                            <option value="2-3">2-3 Weeks (Standard)</option>
+                            <option value="1-2">1-2 Weeks (Express +15%)</option>
+                            <option value="4-6">4-6 Weeks (Flexible -10%)</option>
+                        </select>
+                        <div class="form-hint">Select your preferred project completion timeline</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="additionalNotesPayment">Additional Notes (Optional)</label>
+                        <textarea id="additionalNotesPayment" rows="4" placeholder="Any specific requirements or customization requests..."></textarea>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Your Information -->
+                <div class="payment-section" id="paymentSection2">
+                    <h3 class="payment-section-title">Contact Information</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstNamePayment">First Name *</label>
+                            <input type="text" id="firstNamePayment" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastNamePayment">Last Name *</label>
+                            <input type="text" id="lastNamePayment" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="emailPayment">Email Address *</label>
+                        <input type="email" id="emailPayment" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phonePayment">Phone Number *</label>
+                        <input type="tel" id="phonePayment" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="companyPayment">Company Name (Optional)</label>
+                        <input type="text" id="companyPayment">
+                    </div>
+                    
+                    <h3 class="payment-section-title" style="margin-top: 40px;">Project Details</h3>
+                    
+                    <div class="form-group">
+                        <label for="projectDescriptionPayment">Brief Project Description *</label>
+                        <textarea id="projectDescriptionPayment" rows="4" required placeholder="Tell us about your project goals, target audience, and any specific features you need..."></textarea>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Payment -->
+                <div class="payment-section" id="paymentSection3">
+                    <h3 class="payment-section-title">Payment Method</h3>
+                    
+                    <div class="payment-methods">
+                        <div class="payment-method selected" data-method="card">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Credit/Debit Card</span>
+                        </div>
+                        <div class="payment-method" data-method="paypal">
+                            <i class="fab fa-paypal"></i>
+                            <span>PayPal</span>
+                        </div>
+                        <div class="payment-method" data-method="bank">
+                            <i class="fas fa-university"></i>
+                            <span>Bank Transfer</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Credit Card Form -->
+                    <div id="cardForm" class="payment-form">
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number *</label>
+                            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                        </div>
+                        
+                        <div class="card-details">
+                            <div class="form-group">
+                                <label for="cardName">Name on Card *</label>
+                                <input type="text" id="cardName" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cardExpiry">Expiry Date *</label>
+                                <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cardCVC">CVC *</label>
+                                <input type="text" id="cardCVC" placeholder="123" maxlength="4" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- PayPal Note -->
+                    <div id="paypalNote" class="payment-form" style="display: none;">
+                        <div class="form-group">
+                            <p style="background-color: rgba(67, 97, 238, 0.05); padding: 20px; border-radius: var(--border-radius);">
+                                <i class="fas fa-info-circle"></i> You will be redirected to PayPal to complete your payment after clicking "Complete Purchase".
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Bank Transfer Note -->
+                    <div id="bankNote" class="payment-form" style="display: none;">
+                        <div class="form-group">
+                            <p style="background-color: rgba(67, 97, 238, 0.05); padding: 20px; border-radius: var(--border-radius);">
+                                <strong>Bank Transfer Instructions:</strong><br>
+                                Account Name: Minigle Web Services<br>
+                                Account Number: 1234 5678 9012<br>
+                                Bank: Example Bank<br>
+                                SWIFT/BIC: EXMPUS33<br><br>
+                                <i class="fas fa-info-circle"></i> Please include your full name as reference. Project will begin once payment is confirmed (1-2 business days).
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="termsAgreePayment" required>
+                            I agree to the <a href="#" style="color: var(--primary-color);">Terms of Service</a> and <a href="#" style="color: var(--primary-color);">Privacy Policy</a> *
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Step 4: Confirmation -->
+                <div class="payment-section" id="paymentSection4">
+                    <div class="success-message">
+                        <div class="success-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h3>Thank You for Your Purchase!</h3>
+                        <p>Your order for the <strong id="confirmationPackage">Starter Website</strong> package has been received successfully. We'll contact you within 24 hours to discuss your project details.</p>
+                        <p>An email confirmation has been sent to <strong id="confirmationEmail">your@email.com</strong>.</p>
+                        
+                        <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--light-gray);">
+                            <h4>Order Details</h4>
+                            <p style="margin-top: 15px;"><strong>Order ID:</strong> #MG<span id="orderId">12345</span></p>
+                            <p><strong>Amount Paid:</strong> <span id="confirmationAmount">$1,500.00</span></p>
+                            <p><strong>Estimated Start Date:</strong> <span id="confirmationDate">Within 3 business days</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <div>
+                    <button class="btn btn-prev-payment" id="prevPaymentBtn" style="display: none;">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                </div>
+                <div>
+                    <button class="btn" id="nextPaymentBtn">
+                        Continue <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button class="btn" id="completePaymentBtn" style="display: none;">
+                        <i class="fas fa-lock"></i> Complete Purchase
+                    </button>
+                    <button class="btn" id="closeSuccessBtn" style="display: none;">
+                        <i class="fas fa-home"></i> Return to Site
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="confirmation-modal" id="confirmationModal">
+        <div class="modal-content">
+            <i class="fas fa-check-circle"></i>
+            <h2>Project Inquiry Submitted!</h2>
+            <p>Thank you for your project inquiry! I've received your information and will review your project details. I'll get back to you within 24 hours to schedule a consultation.</p>
+            <p>In the meantime, feel free to browse my <a href="portfolio.html" style="color: var(--primary-color); font-weight: 600;">portfolio</a> or check out my <a href="services.html" style="color: var(--primary-color); font-weight: 600;">services</a> for more information.</p>
+            <button class="btn" id="closeModal" style="margin-top: 20px;">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Video Controls
+        const video = document.querySelector('video');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const muteBtn = document.getElementById('muteBtn');
+        
+        if (video) {
+            playPauseBtn.addEventListener('click', () => {
+                if (video.paused) {
+                    video.play();
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                } else {
+                    video.pause();
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                }
+            });
+            
+            muteBtn.addEventListener('click', () => {
+                if (video.muted) {
+                    video.muted = false;
+                    muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                } else {
+                    video.muted = true;
+                    muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                }
+            });
+        }
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+        const body = document.body;
+        
+        function toggleMobileMenu() {
+            navLinks.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active');
+            
+            if (navLinks.classList.contains('active')) {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+                body.style.overflow = 'hidden';
+            } else {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                body.style.overflow = 'auto';
+            }
+        }
+        
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                toggleMobileMenu();
+            }
+        });
+        
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Close mobile menu on window resize if it's open
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+                toggleMobileMenu();
+            }
+        });
+        
+        // ================ PAYMENT MODAL FUNCTIONALITY ================
+        
+        // Package Data
+        const packages = {
+            starter: {
+                name: "Starter Website",
+                price: 1500,
+                features: [
+                    "5-7 Page Website",
+                    "Responsive Design",
+                    "Contact Form",
+                    "Basic SEO Setup"
+                ]
+            },
+            business: {
+                name: "Business Pro",
+                price: 3500,
+                features: [
+                    "10-15 Page Website",
+                    "Advanced Responsive Design",
+                    "Custom Features",
+                    "Full SEO Optimization",
+                    "Basic E-commerce (up to 20 products)",
+                    "Interactive Elements"
+                ]
+            },
+            ecommerce: {
+                name: "E-commerce Elite",
+                price: 6500,
+                features: [
+                    "Full E-commerce Platform",
+                    "Unlimited Products",
+                    "Payment Gateway Integration",
+                    "Inventory Management",
+                    "Advanced Security Features",
+                    "Priority Support"
+                ]
+            }
+        };
+        
+        // Payment Modal Elements
+        const paymentModal = document.getElementById('paymentModal');
+        const closePaymentModal = document.getElementById('closePaymentModal');
+        const selectPackageBtns = document.querySelectorAll('.select-package');
+        const nextPaymentBtn = document.getElementById('nextPaymentBtn');
+        const prevPaymentBtn = document.getElementById('prevPaymentBtn');
+        const completePaymentBtn = document.getElementById('completePaymentBtn');
+        const closeSuccessBtn = document.getElementById('closeSuccessBtn');
+        const paymentSteps = document.querySelectorAll('.payment-step');
+        const paymentSections = document.querySelectorAll('.payment-section');
+        const paymentMethods = document.querySelectorAll('.payment-method');
+        
+        // Payment State Variables
+        let currentPaymentStep = 1;
+        let selectedPackageType = null;
+        let selectedPaymentMethod = 'card';
+        
+        // Open payment modal when package is selected
+        selectPackageBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const packageType = btn.getAttribute('data-package');
+                const packagePrice = parseInt(btn.getAttribute('data-price'));
+                selectedPackageType = packageType;
+                
+                // Update package details in modal
+                document.getElementById('summaryPackage').textContent = packages[packageType].name;
+                document.getElementById('summaryPrice').textContent = `$${packagePrice.toLocaleString()}.00`;
+                document.getElementById('summaryTotal').textContent = `$${packagePrice.toLocaleString()}.00`;
+                document.getElementById('confirmationPackage').textContent = packages[packageType].name;
+                document.getElementById('confirmationAmount').textContent = `$${packagePrice.toLocaleString()}.00`;
+                
+                // Generate random order ID
+                document.getElementById('orderId').textContent = Math.floor(10000 + Math.random() * 90000);
+                
+                // Reset to first step
+                resetPaymentToStep(1);
+                
+                // Show modal
+                paymentModal.classList.add('active');
+                body.style.overflow = 'hidden';
+            });
+        });
+        
+        // Close payment modal
+        closePaymentModal.addEventListener('click', () => {
+            paymentModal.classList.remove('active');
+            body.style.overflow = 'auto';
+        });
+        
+        closeSuccessBtn.addEventListener('click', () => {
+            paymentModal.classList.remove('active');
+            body.style.overflow = 'auto';
+        });
+        
+        // Close payment modal when clicking outside
+        paymentModal.addEventListener('click', (e) => {
+            if (e.target === paymentModal) {
+                paymentModal.classList.remove('active');
+                body.style.overflow = 'auto';
+            }
+        });
+        
+        // Payment method selection
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', () => {
+                paymentMethods.forEach(m => m.classList.remove('selected'));
+                method.classList.add('selected');
+                selectedPaymentMethod = method.getAttribute('data-method');
+                
+                // Show corresponding payment form
+                document.getElementById('cardForm').style.display = 'block';
+                document.getElementById('paypalNote').style.display = 'none';
+                document.getElementById('bankNote').style.display = 'none';
+                
+                if (selectedPaymentMethod === 'paypal') {
+                    document.getElementById('cardForm').style.display = 'none';
+                    document.getElementById('paypalNote').style.display = 'block';
+                } else if (selectedPaymentMethod === 'bank') {
+                    document.getElementById('cardForm').style.display = 'none';
+                    document.getElementById('bankNote').style.display = 'block';
+                }
+            });
+        });
+        
+        // Next payment button
+        nextPaymentBtn.addEventListener('click', () => {
+            if (currentPaymentStep < 4) {
+                if (validatePaymentStep(currentPaymentStep)) {
+                    goToPaymentStep(currentPaymentStep + 1);
+                }
+            }
+        });
+        
+        // Previous payment button
+        prevPaymentBtn.addEventListener('click', () => {
+            if (currentPaymentStep > 1) {
+                goToPaymentStep(currentPaymentStep - 1);
+            }
+        });
+        
+        // Complete purchase button
+        completePaymentBtn.addEventListener('click', () => {
+            if (validatePaymentStep(3)) {
+                // Get email from form
+                const email = document.getElementById('emailPayment').value;
+                document.getElementById('confirmationEmail').textContent = email;
+                
+                // Set confirmation date
+                const today = new Date();
+                const startDate = new Date(today);
+                startDate.setDate(today.getDate() + 3);
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                document.getElementById('confirmationDate').textContent = startDate.toLocaleDateString('en-US', options);
+                
+                goToPaymentStep(4);
+            }
+        });
+        
+        // Payment step navigation
+        function goToPaymentStep(step) {
+            currentPaymentStep = step;
+            
+            // Update step indicators
+            paymentSteps.forEach((stepEl, index) => {
+                if (index + 1 < step) {
+                    stepEl.classList.add('completed');
+                    stepEl.classList.remove('active');
+                } else if (index + 1 === step) {
+                    stepEl.classList.add('active');
+                    stepEl.classList.remove('completed');
+                } else {
+                    stepEl.classList.remove('active', 'completed');
+                }
+            });
+            
+            // Show/hide sections
+            paymentSections.forEach((section, index) => {
+                if (index + 1 === step) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+            
+            // Update buttons
+            if (step === 1) {
+                prevPaymentBtn.style.display = 'none';
+                nextPaymentBtn.style.display = 'inline-block';
+                completePaymentBtn.style.display = 'none';
+                closeSuccessBtn.style.display = 'none';
+                nextPaymentBtn.textContent = 'Continue';
+            } else if (step === 2 || step === 3) {
+                prevPaymentBtn.style.display = 'inline-block';
+                nextPaymentBtn.style.display = 'inline-block';
+                completePaymentBtn.style.display = 'none';
+                closeSuccessBtn.style.display = 'none';
+                nextPaymentBtn.textContent = 'Continue';
+            } else if (step === 3) {
+                nextPaymentBtn.style.display = 'none';
+                completePaymentBtn.style.display = 'inline-block';
+            } else if (step === 4) {
+                prevPaymentBtn.style.display = 'none';
+                nextPaymentBtn.style.display = 'none';
+                completePaymentBtn.style.display = 'none';
+                closeSuccessBtn.style.display = 'inline-block';
+            }
+        }
+        
+        // Reset payment to step 1
+        function resetPaymentToStep(step) {
+            currentPaymentStep = 1;
+            goToPaymentStep(step);
+            
+            // Reset form
+            document.getElementById('projectTimelinePayment').selectedIndex = 0;
+            document.getElementById('additionalNotesPayment').value = '';
+            document.getElementById('firstNamePayment').value = '';
+            document.getElementById('lastNamePayment').value = '';
+            document.getElementById('emailPayment').value = '';
+            document.getElementById('phonePayment').value = '';
+            document.getElementById('companyPayment').value = '';
+            document.getElementById('projectDescriptionPayment').value = '';
+            document.getElementById('cardNumber').value = '';
+            document.getElementById('cardName').value = '';
+            document.getElementById('cardExpiry').value = '';
+            document.getElementById('cardCVC').value = '';
+            document.getElementById('termsAgreePayment').checked = false;
+            
+            // Reset payment method
+            paymentMethods.forEach(m => m.classList.remove('selected'));
+            paymentMethods[0].classList.add('selected');
+            selectedPaymentMethod = 'card';
+            document.getElementById('cardForm').style.display = 'block';
+            document.getElementById('paypalNote').style.display = 'none';
+            document.getElementById('bankNote').style.display = 'none';
+        }
+        
+        // Validate payment step
+        function validatePaymentStep(step) {
+            let isValid = true;
+            
+            if (step === 1) {
+                const timeline = document.getElementById('projectTimelinePayment');
+                if (!timeline.value) {
+                    alert('Please select a project timeline');
+                    timeline.focus();
+                    isValid = false;
+                }
+            } else if (step === 2) {
+                const requiredFields = ['firstNamePayment', 'lastNamePayment', 'emailPayment', 'phonePayment', 'projectDescriptionPayment'];
+                requiredFields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    if (!field.value.trim()) {
+                        alert(`Please fill in ${field.previousElementSibling.textContent}`);
+                        field.focus();
+                        isValid = false;
+                        return;
+                    }
+                });
+                
+                // Email validation
+                const email = document.getElementById('emailPayment').value;
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Please enter a valid email address');
+                    document.getElementById('emailPayment').focus();
+                    isValid = false;
+                }
+            } else if (step === 3) {
+                // Check terms agreement
+                if (!document.getElementById('termsAgreePayment').checked) {
+                    alert('Please agree to the Terms of Service and Privacy Policy');
+                    isValid = false;
+                }
+                
+                // Validate card details if card payment selected
+                if (selectedPaymentMethod === 'card') {
+                    const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+                    const cardName = document.getElementById('cardName').value;
+                    const cardExpiry = document.getElementById('cardExpiry').value;
+                    const cardCVC = document.getElementById('cardCVC').value;
+                    
+                    if (!cardNumber || cardNumber.length < 16) {
+                        alert('Please enter a valid card number');
+                        document.getElementById('cardNumber').focus();
+                        isValid = false;
+                    } else if (!cardName) {
+                        alert('Please enter the name on card');
+                        document.getElementById('cardName').focus();
+                        isValid = false;
+                    } else if (!cardExpiry || !cardExpiry.includes('/')) {
+                        alert('Please enter a valid expiry date (MM/YY)');
+                        document.getElementById('cardExpiry').focus();
+                        isValid = false;
+                    } else if (!cardCVC || cardCVC.length < 3) {
+                        alert('Please enter a valid CVC code');
+                        document.getElementById('cardCVC').focus();
+                        isValid = false;
+                    }
+                }
+            }
+            
+            return isValid;
+        }
+        
+        // Format card number
+        document.getElementById('cardNumber').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+            let matches = value.match(/\d{4,16}/g);
+            let match = matches && matches[0] || '';
+            let parts = [];
+            
+            for (let i = 0; i < match.length; i += 4) {
+                parts.push(match.substring(i, i + 4));
+            }
+            
+            if (parts.length) {
+                e.target.value = parts.join(' ');
+            } else {
+                e.target.value = value;
+            }
+        });
+        
+        // Format expiry date
+        document.getElementById('cardExpiry').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+            
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            
+            e.target.value = value;
+        });
+        
+        // Prevent non-numeric input for CVC
+        document.getElementById('cardCVC').addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+        });
+        
+        // Timeline selection effect on price
+        document.getElementById('projectTimelinePayment').addEventListener('change', function(e) {
+            const basePrice = packages[selectedPackageType].price;
+            let finalPrice = basePrice;
+            
+            if (e.target.value === '1-2') {
+                finalPrice = Math.round(basePrice * 1.15);
+            } else if (e.target.value === '4-6') {
+                finalPrice = Math.round(basePrice * 0.9);
+            }
+            
+            document.getElementById('summaryPrice').textContent = `$${finalPrice.toLocaleString()}.00`;
+            document.getElementById('summaryTotal').textContent = `$${finalPrice.toLocaleString()}.00`;
+            document.getElementById('confirmationAmount').textContent = `$${finalPrice.toLocaleString()}.00`;
+        });
+        
+        // ================ EXISTING FORM LOGIC (KEPT FROM YOUR CODE) ================
+        
+        // Multi-Step Form Logic
+        const formSteps = document.querySelectorAll('.form-step');
+        const progressSteps = document.querySelectorAll('.progress-step');
+        const nextButtons = document.querySelectorAll('.btn-next');
+        const prevButtons = document.querySelectorAll('.btn-prev');
+        const form = document.getElementById('projectInquiryForm');
+        const confirmationModal = document.getElementById('confirmationModal');
+        const closeModal = document.getElementById('closeModal');
+        
+        let currentStep = 1;
+        
+        function updateFormProgress() {
+            progressSteps.forEach(step => {
+                const stepNum = parseInt(step.getAttribute('data-step'));
+                step.classList.remove('active', 'completed');
+                
+                if (stepNum < currentStep) {
+                    step.classList.add('completed');
+                } else if (stepNum === currentStep) {
+                    step.classList.add('active');
+                }
+            });
+            
+            formSteps.forEach(step => {
+                const stepNum = parseInt(step.getAttribute('data-step'));
+                step.classList.remove('active');
+                
+                if (stepNum === currentStep) {
+                    step.classList.add('active');
+                }
+            });
+        }
+        
+        nextButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                if (validateStep(currentStep)) {
+                    currentStep++;
+                    updateFormProgress();
+                    
+                    document.querySelector('.inquiry-form-container').scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }
+            });
+        });
+        
+        prevButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                currentStep--;
+                updateFormProgress();
+                
+                document.querySelector('.inquiry-form-container').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            });
+        });
+        
+        function validateStep(step) {
+            let isValid = true;
+            
+            if (step === 1) {
+                const firstName = document.getElementById('firstName');
+                const lastName = document.getElementById('lastName');
+                const email = document.getElementById('email');
+                const projectName = document.getElementById('projectName');
+                const projectDescription = document.getElementById('projectDescription');
+                
+                [firstName, lastName, email, projectName, projectDescription].forEach(field => {
+                    if (!field.value.trim()) {
+                        field.style.borderColor = 'var(--danger-color)';
+                        isValid = false;
+                    } else {
+                        field.style.borderColor = '';
+                    }
+                });
+                
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (email.value && !emailRegex.test(email.value)) {
+                    email.style.borderColor = 'var(--danger-color)';
+                    isValid = false;
+                }
+            }
+            
+            if (step === 2) {
+                const selectedServices = document.getElementById('selectedServices');
+                if (!selectedServices.value) {
+                    alert('Please select at least one service');
+                    isValid = false;
+                }
+            }
+            
+            if (step === 3) {
+                const timeline = document.getElementById('timeline');
+                if (!timeline.value) {
+                    timeline.style.borderColor = 'var(--danger-color)';
+                    isValid = false;
+                } else {
+                    timeline.style.borderColor = '';
+                }
+            }
+            
+            return isValid;
+        }
+        
+        const serviceOptions = document.querySelectorAll('.service-option');
+        const selectedServicesInput = document.getElementById('selectedServices');
+        
+        serviceOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                option.classList.toggle('selected');
+                
+                const selected = [];
+                document.querySelectorAll('.service-option.selected').forEach(selectedOption => {
+                    selected.push(selectedOption.getAttribute('data-service'));
+                });
+                
+                selectedServicesInput.value = selected.join(',');
+            });
+        });
+        
+        const budgetSlider = document.getElementById('budget');
+        const budgetValue = document.getElementById('budgetValue');
+        
+        function formatCurrency(amount) {
+            return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        
+        budgetSlider.addEventListener('input', () => {
+            const value = parseInt(budgetSlider.value);
+            budgetValue.textContent = formatCurrency(value);
+        });
+        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            if (validateStep(3)) {
+                const formData = new FormData(form);
+                const formObject = {};
+                formData.forEach((value, key) => {
+                    formObject[key] = value;
+                });
+                
+                console.log('Project Inquiry Submitted:', formObject);
+                
+                confirmationModal.classList.add('active');
+                body.style.overflow = 'hidden';
+                
+                form.reset();
+                currentStep = 1;
+                updateFormProgress();
+                
+                serviceOptions.forEach(option => {
+                    option.classList.remove('selected');
+                });
+                selectedServicesInput.value = '';
+                
+                budgetSlider.value = 3000;
+                budgetValue.textContent = '3,000';
+            }
+        });
+        
+        closeModal.addEventListener('click', () => {
+            confirmationModal.classList.remove('active');
+            body.style.overflow = 'auto';
+        });
+        
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                item.classList.toggle('active');
+            });
+        });
+        
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            const linkHref = link.getAttribute('href');
+            if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

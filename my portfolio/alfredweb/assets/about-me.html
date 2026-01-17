@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Alfred | Minigle Web Design & Hosting</title>
+    <link rel="stylesheet" href="/sty/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Root Variables for Colors */
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4cc9f0;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --text-color: #333;
+            --text-light: #666;
+            --success-color: #4ade80;
+            --warning-color: #f59e0b;
+            --highlight-color:#f5be0b9c;
+            --danger-color: #ef4444;
+            --gray-color: #6c757d;
+            --light-gray: #e9ecef;
+            --border-radius: 8px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(76, 201, 240, 0.1) 100%);
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 3.5rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 20px;
+        }
+
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }   
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            padding: 5px 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--dark-color);
+            z-index: 1001;
+        }
+
+        /* About Content */
+        .about-content {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 50px;
+            box-shadow: var(--box-shadow);
+            margin-top: -40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+            align-items: center;
+        }
+
+        .profile-img {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .profile-img:hover img {
+            transform: scale(1.03);
+        }
+
+        .intro-text h2 {
+            font-size: 2.2rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+        }
+
+        .intro-text h2 span {
+            color: var(--primary-color);
+        }
+
+        .intro-text p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.05) 0%, rgba(76, 201, 240, 0.05) 100%);
+            border: 3px solid var(--highlight-color);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) ;
+        }
+
+        .highlight-box p {
+            font-size: 1.1rem;
+            color: var(--dark-color);
+            font-style: italic;
+            margin: 0;
+        }
+
+        /* Journey Timeline */
+        .journey-section {
+            margin: 60px 0;
+        }
+
+        .section-heading {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            background-color: var(--light-gray);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            padding: 25px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: 5%;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 5%;
+        }
+
+        .timeline-year {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-year {
+            right: -40px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-year {
+            left: -40px;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.4rem;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Philosophy Section */
+        .philosophy-section {
+            margin: 60px 0;
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .philosophy-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 35px 30px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            text-align: center;
+            border: 1px solid #6c757d23;
+        }
+
+        .philosophy-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .philosophy-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(67, 97, 238, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 30px;
+            color: var(--primary-color);
+        }
+
+        .philosophy-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .philosophy-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            margin: 60px 0;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .skill-category h3 {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .skill-item {
+            margin-bottom: 25px;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .skill-name {
+            font-weight: 600;
+        }
+
+        .skill-percentage {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background-color: var(--light-gray);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 4px;
+            width: 0;
+            transition: width 1.5s ease-in-out;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 60px;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.05) 0%, rgba(76, 201, 240, 0.05) 100%);
+            border-radius: var(--border-radius);
+            margin-top: 60px;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 70px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #b0b7c3;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #b0b7c3;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-intro {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .profile-img {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                flex-direction: row !important;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 80px);
+                margin-left: 80px !important;
+                margin-right: 0 !important;
+            }
+            
+            .timeline-year {
+                left: 0 !important;
+                right: auto !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 280px;
+                height: 100vh;
+                background-color: white;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 100px 30px 30px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+                z-index: 999;
+                overflow-y: auto;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 12px 15px;
+                border-radius: var(--border-radius);
+                font-size: 1.1rem;
+                transition: var(--transition);
+            }
+            
+            .nav-links a:hover {
+                background-color: rgba(67, 97, 238, 0.1);
+                color: var(--primary-color);
+                padding-left: 20px;
+            }
+            
+            .nav-links a::after {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .mobile-menu-btn.active {
+                position: fixed;
+                right: 20px;
+                top: 25px;
+            }
+            
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                padding: 30px;
+            }
+            
+            .intro-text h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-heading {
+                font-size: 1.8rem;
+            }
+            
+            .cta-section {
+                padding: 40px 20px;
+            }
+            
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .logo-img {
+                height: 40px;
+                width: 40px;
+                font-size: 18px;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                padding: 20px;
+            }
+            
+            .timeline-content {
+                padding: 20px;
+            }
+            
+            .timeline-year {
+                width: 60px;
+                height: 60px;
+                font-size: 1rem;
+            }
+            
+            .philosophy-grid,
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-img"><a class="logo-img" href="#home"><img src="/upload/img/minigle-logo-fav-light.png" alt=""></a></div>
+                
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/alfredweb/index.html">Home</a></li>
+                    <li><a href="about-me.html#" class="active">About</a></li>
+                    <li><a href="services-info.html">Services</a></li>
+                    <li><a href="works-info.html">Portfolio</a></li>
+                    <li><a href="start-project.html">Start Project</a></li>
+                    <li><a href="/alfredweb/assets/contact-term.html">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay"></div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">About Alfred Godwin</h1>
+            <p class="page-subtitle">My journey from a passionate beginner to a web design & hosting specialist with 8+ years of experience</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <main class="container">
+        <div class="about-content">
+            <!-- Introduction Section -->
+            <section class="about-intro">
+                <div class="profile-img">
+                    <img src="/upload/img/alfred tech room.png" alt="Alfred Godwin - Web Designer & Hosting Specialist">
+                </div>
+                <div class="intro-text">
+                    <h2>Hello, I'm <span>Alfred Godwin</span></h2>
+                    <p>I'm a dedicated web designer and hosting specialist with over 8 years of experience creating digital solutions that empower businesses to succeed online. My journey in web development began with a simple curiosity about how websites work, which evolved into a passion for creating beautiful, functional digital experiences.</p>
+                    
+                    <p>What sets me apart is my unique combination of design sensibility and technical hosting expertise. I don't just create websites – I build complete digital ecosystems that are visually stunning, technically robust, and reliably hosted.</p>
+                    
+                    <div class="highlight-box">
+                        <p>"I believe that a website is more than just an online presence – it's the digital heartbeat of your business. My mission is to create web solutions that not only look great but perform flawlessly, providing your visitors with exceptional experiences while supporting your business growth."</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Professional Journey Timeline -->
+            <section class="journey-section">
+                <h2 class="section-heading">My Professional Journey</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>The Beginning</h3>
+                            <p>Started my journey in web design by creating websites for local small businesses while studying computer science. Built my first e-commerce site for a friend's handmade jewelry business.</p>
+                        </div>
+                        <div class="timeline-year">2015</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Formal Education & First Agency Role</h3>
+                            <p>Completed my degree and joined a digital agency as a junior web developer. Learned the intricacies of responsive design, SEO, and user experience principles while working on diverse client projects.</p>
+                        </div>
+                        <div class="timeline-year">2017</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Specialization in Hosting</h3>
+                            <p>Recognized the critical importance of reliable hosting and began specializing in server management and optimization. Started offering hosting services alongside my web design work.</p>
+                        </div>
+                        <div class="timeline-year">2019</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Launching Minigle</h3>
+                            <p>Founded Minigle to offer comprehensive web design and hosting solutions. Developed my signature approach that combines aesthetic design with technical excellence and reliable hosting infrastructure.</p>
+                        </div>
+                        <div class="timeline-year">2021</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Present Day & Future Vision</h3>
+                            <p>Now serving clients worldwide with a focus on creating sustainable digital solutions. Continuously learning and adapting to new technologies while maintaining my commitment to quality and client satisfaction.</p>
+                        </div>
+                        <div class="timeline-year">2024</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Work Philosophy -->
+            <section class="philosophy-section">
+                <h2 class="section-heading">My Work Philosophy</h2>
+                <div class="philosophy-grid">
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Client Collaboration</h3>
+                        <p>I believe in working closely with clients throughout the entire process. Your vision and goals are at the center of every decision, ensuring the final product truly represents your brand.</p>
+                    </div>
+                    
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>Technical Excellence</h3>
+                        <p>Every website I build is crafted with clean, efficient code and optimized for performance. I stay current with the latest technologies to ensure your site is built on a solid foundation.</p>
+                    </div>
+                    
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Reliability First</h3>
+                        <p>I understand that your website needs to be available 24/7. That's why I offer robust hosting solutions with 99.9% uptime, regular backups, and proactive security measures.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills & Expertise -->
+            <section class="skills-section">
+                <h2 class="section-heading">Skills & Expertise</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3>Web Design & Development</h3>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Responsive Web Design</span>
+                                <span class="skill-percentage">98%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="98"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">UI/UX Design</span>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Frontend Development</span>
+                                <span class="skill-percentage">96%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="96"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">E-commerce Solutions</span>
+                                <span class="skill-percentage">92%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="92"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Hosting & Technical</h3>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Server Management</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Performance Optimization</span>
+                                <span class="skill-percentage">94%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="94"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Security Implementation</span>
+                                <span class="skill-percentage">93%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="93"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Backup & Disaster Recovery</span>
+                                <span class="skill-percentage">96%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="96"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <section class="cta-section">
+                <h2>Ready to Bring Your Vision to Life?</h2>
+                <p>Whether you need a stunning new website, reliable hosting for your existing site, or a complete digital solution, I'm here to help. Let's discuss how we can work together to create something amazing for your business.</p>
+                <a href="./start-project.html" class="btn">Start Your Project</a>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+            <div class="logo2">
+                <div class="logo-img2"><img src="/upload/img/minigle-logo-fav-dark.png" alt=""></div>
+                
+            </div>
+                    <p>Professional web design and hosting services by Alfred Godwin. Creating beautiful, functional websites that help businesses succeed online.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="./assets/about-me.html">About</a></li>
+                        <li><a href="./assets/services-info.html">Services</a></li>
+                        <li><a href="./assets/works-info.html">Portfolio</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="start-project.html">Web Design</a></li>
+                        <li><a href="start-project.html">Web Hosting</a></li>
+                        <li><a href="start-project.html">E-commerce</a></li>
+                        <li><a href="start-project.html">Website Maintenance</a></li>
+                        <li><a href="start-project.html">SEO Optimization</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> alfred@minigle.com</li>
+                        <li><i class="fas fa-phone"></i> +234 913-710-2840</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9am-6pm</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Remote Services Worldwide</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; <span id="currentYear"></span> Minigle. All rights reserved. Designed by Alfred Godwin.</p>
+            </div>
+        </div>
+    </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+        const body = document.body;
+        
+        function toggleMobileMenu() {
+            navLinks.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active');
+            
+            // Toggle menu icon
+            if (navLinks.classList.contains('active')) {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+                // Prevent body scroll when menu is open
+                body.style.overflow = 'hidden';
+            } else {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                // Restore body scroll
+                body.style.overflow = 'auto';
+            }
+        }
+        
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        
+        // Close mobile menu when clicking overlay
+        mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+        
+        // Close mobile menu when pressing Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                toggleMobileMenu();
+            }
+        });
+        
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Close mobile menu on window resize if it's open
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+                toggleMobileMenu();
+            }
+        });
+        
+        // Animate skill bars when they come into view
+        const skillBars = document.querySelectorAll('.skill-progress');
+        
+        function animateSkillBars() {
+            skillBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                bar.style.width = width + '%';
+            });
+        }
+        
+        // Use Intersection Observer to trigger skill bar animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateSkillBars();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        // Observe the skills section
+        const skillsSection = document.querySelector('.skills-section');
+        if (skillsSection) {
+            observer.observe(skillsSection);
+        }
+        
+        // Highlight current page in navigation
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            const linkHref = link.getAttribute('href');
+            if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
